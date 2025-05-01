@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diaspora Skills Connect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #0b5394;
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+    section {
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      margin-top: 2rem;
+    }
+    h2, h3 {
+      color: #0b5394;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #0b5394;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+   
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 83, 148, 0.8); /* Semi-transparent blue overlay */
+    backdrop-filter: blur(3px);
+  }
+  
+  .modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 30px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    animation: modalFadeIn 0.4s ease-out;
+  }
+  
+  @keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .close {
+    color: #888;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .close:hover {
+    color: #0b5394; /* Your brand blue */
+  }
+  
+  .modal-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #4CAF50; /* Success green */
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+  }
+  
+  .modal-content h3 {
+    color: #0b5394; /* Your brand blue */
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+  
+  .modal-content p {
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 25px;
+  }
+  
+  .modal-button {
+    background-color: #0b5394; /* Your brand blue */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .modal-button:hover {
+    background-color: #063970; /* Darker blue */
+  }
+
+    
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .testimonial {
+      background: #e7f3ff;
+      padding: 1rem;
+      border-left: 4px solid #0b5394;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+    }
+    @media (max-width: 600px) {
+      section {
+        margin: 1rem;
+      }
+    }
+    .error {
+    color: #d32f2f;
+    background-color: #fde7e7;
+    padding: 0.8rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    border-left: 4px solid #d32f2f;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Diaspora Skills Connect</h1>
+    <p>Share your skills. Help rebuild Somalia.</p>
+  </header>
+
+  <section>
+    <h2>Register as a Contributor</h2>
+    <form id="registerForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="skill">Your Profession</label>
+      <select id="skill" name="skill" required>
+        <option value="">-- Select Profession --</option>
+        <option value="Doctor">Doctor</option>
+        <option value="Teacher">Teacher</option>
+        <option value="Agriculture">Modern Agriculture</option>
+        <option value="Engineer">Engineer</option>
+        <option value="IT">IT Specialist</option>
+        <option value="Business">Business Expert</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="mode">How would you like to help?</label>
+      <select id="mode" name="mode" required>
+        <option value="">-- Select Mode --</option>
+        <option value="in_person">Short Visit (In Person)</option>
+        <option value="online">Online Training / Mentorship</option>
+        <option value="both">Both</option>
+      </select>
+
+      <label for="message">Tell us more about what you can offer:</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <section>
+    <h3>Testimonials</h3>
+    <div class="testimonial">
+      “Through this program, I mentored five students in Somalia from Canada. It was a fulfilling experience.” – Amina H., Software Engineer
+    </div>
+    <div class="testimonial">
+      “My short trip to Mogadishu to train nurses was life-changing. I’m proud to give back.” – Dr. Yusuf M.
+    </div>
+  </section>
+
+  <section>
+    <h3>FAQs</h3>
+    <p><strong>Q: Do I need to be Somali to join?</strong><br>A: No, anyone willing to contribute to Somalia's development is welcome.</p>
+    <p><strong>Q: Is travel covered?</strong><br>A: In most cases, travel is not covered. Some NGOs may offer support on a case-by-case basis.</p>
+    <p><strong>Q: Can I participate from abroad?</strong><br>A: Yes! We encourage remote mentorship and training.</p>
+  </section>
+
+  <footer>
+    <p>Follow us on 
+      <a href="#" target="_blank">Facebook</a> | 
+      <a href="#" target="_blank">Twitter</a> | 
+      <a href="#" target="_blank">LinkedIn</a>
+    </p>
+    <p>&copy; 2025 Diaspora Skills Connect</p>
+  </footer>
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-icon">✓</div>
+      <h3>Thank You!</h3>
+      <p>We've received your registration and will contact you soon.</p>
+      <button class="modal-button">Got It!</button>
+    </div>
+  </div>
+  
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const modal = document.getElementById("successModal");
+    const modalButton = document.querySelector(".modal-button");
+    
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.textContent = 'Submitting...';
+    submitBtn.disabled = true;
+  
+      // Hide any previous error messages
+      const errorElement = document.getElementById("errorMessage");
+      if (errorElement) errorElement.style.display = "none";
+  
+      const data = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        skill: form.skill.value,
+        mode: form.mode.value,
+        message: form.message.value.trim()
+      };
+  
+      fetch("https://script.google.com/macros/s/AKfycbzFiCzTM8fyNI3CQJ2O6BpEbLZkz4VsvWWaCIlW04Xx23l2a9UM_Nmd9m2l0DCjrO7hiA/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data),
+        mode: 'no-cors'
+      })
+      .then(() => {
+      // Show success modal
+      modal.style.display = "block";
+      form.reset();
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("There was an error submitting your form. Please try again.");
+    })
+    .finally(() => {
+      submitBtn.textContent = originalBtnText;
+      submitBtn.disabled = false;
+    });
+
+    // Close modal handlers
+    document.querySelector(".close").onclick = function() {
+      modal.style.display = "none";
+    }
+    
+    modalButton.onclick = function() {
+      modal.style.display = "none";
+    }
+    
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  });
+  </script>
+</body>
+</html>
